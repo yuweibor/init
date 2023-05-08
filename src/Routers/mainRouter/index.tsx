@@ -1,4 +1,8 @@
 import React from 'react';
+import Head from '@components/Head';
+import {Router} from 'react'
 export default (props) => {
-  return (<div>1</div>)
-}
+  return (
+    <div className="main-router"></div>
+  )
+};

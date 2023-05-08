@@ -1,4 +1,4 @@
 import React from 'react';
 export default (props) => {
-  return (<div>1</div>)
+  return (<div className="sub-router">2</div>)
 }

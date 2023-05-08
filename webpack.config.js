@@ -2,22 +2,25 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 module.exports = {
   target: 'web',
   entry: {
     main: "./src/main.tsx",
     sub: "./src/sub.tsx",
   },
+
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].bundle[hash:5].js",
+    publicPath: 'auto',
   },
+
   resolve: {
     extensions: [".tx", ".js", ".json", ".jsx", ".tsx"],
-    alias: {
-      "@": path.resolve(__dirname,'src'),
-      "_": __dirname
-    }
+    plugins: [
+      new TsconfigPathsPlugin({ configFile: "./tsconfig.json" })
+    ]
   },
 
   module: {
@@ -41,8 +44,9 @@ module.exports = {
           },
         },
       },
+
       {
-        test: /\.(js)|(ts)|(tsx)|(jsx)$/i,
+        test: /\.(js|ts|jsx|tsx)$/i,
         exclude: /node_modules/,
         use: [
           {
@@ -51,7 +55,9 @@ module.exports = {
               presets: ["@babel/preset-env", "@babel/preset-react"],
             },
           },
-          { loader: "ts-loader" },
+          {
+            loader: "ts-loader",
+          },
         ],
       },
     ],
@@ -62,7 +68,16 @@ module.exports = {
     //     { from: 'public', to: 'public' }
     //   ]
     // }),
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      chunks: ["main"],
+      filename: 'main.html',
+    }),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      chunks: ["sub"],
+      filename: 'sub.html',
+    }),
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
       chunkFilename: "css/common.[hash:5].css"
