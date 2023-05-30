@@ -3,6 +3,7 @@ import { Link, Outlet } from 'react-router-dom';
 import Left from '../../components/Left';
 import Head from '../../components/Head';
 import { Layout } from "antd";
+import "./index.scss";
 
 const { Header, Sider, Content, Footer } = Layout;
 
@@ -14,8 +15,10 @@ export default () => {
                 <Head />
             </Header>
             <Layout>
-                <Sider breakpoint="sm"
-                    collapsedWidth="0" className="sider">
+                <Sider breakpoint="md" collapsible
+                    className="sider"
+                    collapsedWidth="0"
+                >
                     <Left />
                 </Sider>
                 <Content className="content">
