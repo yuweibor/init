@@ -5,7 +5,12 @@ module.exports = {
     index: "./src/index.js",
   },
   resolve: {
-    extensions: [".js", ".json", ".jsx"],
+    alias: {
+      '@': path.resolve(__dirname, 'src/'),
+      '@pages': path.resolve(__dirname, 'src/pages/'),
+      '@components': path.resolve(__dirname, 'src/components/'),
+    },
+    extensions: [".js", ".json", ".jsx", ".tsx"],
   },
   module: {
     rules: [
@@ -30,6 +35,13 @@ module.exports = {
             presets: ["@babel/preset-env", "@babel/preset-react"]
           }
         }
+      },
+      {
+        test: /\.ts|tsx$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "ts-loader",
+        }
       }
     ],
   },
@@ -40,6 +52,6 @@ module.exports = {
   ],
   output: {
     filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "dist")
   }
 };

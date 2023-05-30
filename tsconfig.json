@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "module": "commonjs",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "paths": {
+      "@/*":["./src/*"],
+      "@pages/*":["./src/pages/*"],
+      "@components/*":["./src/components/*"],
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "src/**/*.spec.ts"]
+}
