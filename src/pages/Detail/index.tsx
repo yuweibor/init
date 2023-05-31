@@ -1,19 +1,22 @@
-import Head from '@/components/Head';
+import DetailContent from '@components/DetailContent';
 import * as React from 'react';
+import detailCtx from '@/Context/detail';
+import { detailReducer, initState } from '@/Reducers/detailReducer';
 
 export async function loader({ request }) {
-    let data = await fetchData(request);
-    return json(data);
+    // let data = await fetchData(request);
+    return null;
 }
 
 export function Component(props) {
-    // let data = useLoaderData();
-    console.log(props);
+    const DetailContext = detailCtx;
+
+    const [state, dispatch] = React.useReducer(detailReducer, initState);
 
     return (
-        <>
-            detail
-        </>
+        <DetailContext.Provider value={{ state, dispatch }}>
+            <DetailContent />
+        </DetailContext.Provider>
     );
 }
 

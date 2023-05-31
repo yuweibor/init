@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { useParams } from "react-router-dom";
 export async function loader({ request }) {
-    // let data = await fetchData(request);
-    // return json(data);
+    return null;
 }
 
 export function Component() {
