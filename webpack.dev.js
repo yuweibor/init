@@ -7,7 +7,7 @@ module.exports = merge(baseConfig, {
   devServer: {
     port: 8080,
     hot: true,
-    open: true,
+    open: false,
     historyApiFallback: true,
     static: {
       directory: path.join(__dirname, 'public'),
