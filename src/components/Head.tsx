@@ -11,12 +11,16 @@ export default (props) => {
         key: '/',
         icon: <AppstoreOutlined />
     }, {
-        label: 'List',
-        key: '/list',
+        label: 'context',
+        key: '/context',
         icon: <AppstoreOutlined />,
     }, {
-        label: 'Detail',
-        key: '/detail',
+        label: 'redux',
+        key: '/redux',
+        icon: <SettingOutlined />
+    }, {
+        label: 'react-redux',
+        key: '/react-redux',
         icon: <SettingOutlined />
     },
     ]

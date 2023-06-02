@@ -1,94 +1,26 @@
-import * as React from 'react';
-import { useParams } from "react-router-dom";
-import { bindActionCreators, combineReducers, createStore, applyMiddleware } from 'redux';
+// import { useParams } from "react-router-dom";
+import { bindActionCreators, createStore, applyMiddleware, combineReducers } from 'redux';
 import logger from 'redux-logger';
-import thunk from 'redux-thunk';
-import promise from 'redux-promise';
+// import thunk from 'redux-thunk';
+// import promise from 'redux-promise';
 import createSagaMiddleware from "redux-saga";
 import { take, all, takeEvery, takeLatest, call, put, delay, apply, select, cps, fork, cancel, cancelled, race } from 'redux-saga/effects';
+import reducers from './reducers';
+import actions, { actionType } from './actions';
 
-export async function loader({ request }) {
-    return null;
-}
-const actionType = {
-    'a1': Symbol('a1'),
-    'a2': Symbol('a2'),
-    'a3': Symbol('a3'),
-    'a4': Symbol('a4'),
-    'a5': Symbol('a5'),
-}
-const initState = { name: 'no name' }
-const reducer1 = (state = initState, action) => {
-    switch (action.type) {
-        case actionType.a1:
-            return { ...state, ...action.payload }
-            break;
-        default:
-            return state
-    }
 
-}
-const reducer2 = (state = initState, action) => {
+export const sagaMid = createSagaMiddleware();
 
-    switch (action.type) {
-        case actionType.a2:
-            return { ...state, ...action.payload }
-            break;
-        case actionType.a3:
-            return { ...state, ...action.payload }
-            break;
-        case actionType.a4:
-            return { ...state, ...action.payload }
-            break;
-        default:
-            return state
-    }
-}
-const reducers = combineReducers({ reducer1, reducer2 });
-
-const sagaMid = createSagaMiddleware();
-
+// 用thunk 或者 promise
 // const store = createStore(reducers, applyMiddleware( thunk, promise, logger));
+
 const store = createStore(reducers, applyMiddleware(sagaMid, logger));
 
-const act1 = (payload) => {
-    return {
-        type: actionType.a1,
-        payload
-    }
-}
-const act2 = (payload) => {
-    return {
-        type: actionType.a2,
-        payload
-    }
-}
-
-// thunk 需要用到dispatch
-const act3 = (payload) => {
-    return async (dispatch) => {
-        const res = await new Promise(e => setTimeout(() => e('thunk'), 1000));
-        dispatch({ type: actionType.a3, payload: { name: payload.name + res } })
-    }
-}
-
-// promise 只需返回promise
-const act4 = (payload) => {
-    return new Promise((res, rej) => {
-        setTimeout(() => {
-            res({ type: actionType.a4, payload: { name: payload.name + 'promise' } })
-        }, 1000)
-    })
-}
-
-
-// 派发 dispatch
 // 第一种
 // store.dispatch(act1({ name: 'a11' }));
 
 // 第二种 整合action
-const act = { act1, act2, act3, act4 }
-const newAct = bindActionCreators(act, store.dispatch);
+export const bindActions = bindActionCreators(actions, store.dispatch);
 // newAct.act2({ name: 'a22' })
 
 // 第三种 redux-thunk
@@ -99,14 +31,14 @@ const newAct = bindActionCreators(act, store.dispatch);
 // 第五种 redux-saga 最复杂
 
 // take 阻塞的
-function* sagaTask() {
-    // while (1) {
-    console.log('take a1 begin');
-    const takenAction = yield take(actionType.a1);
-    //副作用
-    console.log('finish a1', takenAction);
-    // }
-}
+// function* sagaTask() {
+//     // while (1) {
+//     console.log('take a1 begin');
+//     const takenAction = yield take(actionType.a1);
+//     //副作用
+//     console.log('finish a1', takenAction);
+//     // }
+// }
 // function* sagaTask2() {
 //     // while (1) {
 //     console.log('take a2 begin');
@@ -184,17 +116,4 @@ function* sagaTask() {
 // sagaMid.run(callAndPut);
 // sagaMid.run(testSelect);
 // sagaMid.run(testFork);
-
-
-export function Component() {
-    // let data = useLoaderData();
-
-    return (
-        <>
-            <button onClick={() => { }}>click</button>
-            <button onClick={() => { store.dispatch(act1({ name: 'a1' })) }}>click2</button>
-            <img src='../../img/zuse.jpg' style={{ width: "80%" }} />
-        </>
-    );
-}
-
+export default store;

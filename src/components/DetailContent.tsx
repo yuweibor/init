@@ -1,9 +1,8 @@
 import * as React from 'react'
-import detailCtx from '../Context/detail'
+import detailCtx from '../context/detail'
 import { Button, Col, Input, Row } from 'antd';
 export default function DetailIndex() {
     const context = React.useContext(detailCtx);
-    console.log(context);
     const { state, dispatch } = context;
     const add = () => {
         dispatch({ type: "add_num", step: 2 });
@@ -11,7 +10,6 @@ export default function DetailIndex() {
     const changeName = (e) => {
         dispatch({ type: "change_name", nextName: e.target.value })
     }
-    console.log(state)
     return (
         <Row>
             <Col span={18} offset={4}>

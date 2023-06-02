@@ -1,7 +1,7 @@
 import DetailContent from '@components/DetailContent';
 import * as React from 'react';
-import detailCtx from '@/Context/detail';
-import { detailReducer, initState } from '@/Reducers/detailReducer';
+import detailCtx from '@/context/detail';
+import { detailReducer, initState } from '@/context/reducers';
 
 export async function loader({ request }) {
     // let data = await fetchData(request);

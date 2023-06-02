@@ -2,7 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: {
-    index: "./src/index.js",
+    index: "./src/index.tsx",
   },
   resolve: {
     alias: {
@@ -10,7 +10,7 @@ module.exports = {
       '@pages': path.resolve(__dirname, 'src/pages/'),
       '@components': path.resolve(__dirname, 'src/components/'),
     },
-    extensions: [".js", ".json", ".jsx", ".tsx"],
+    extensions: [".js", ".json", ".jsx", ".tsx", ".ts"],
   },
   module: {
     rules: [
@@ -26,18 +26,18 @@ module.exports = {
         test: /.(woff|woff2|eot|ttf|otf)$/i,
         type: "asset/resource"
       },
+      // {
+      //   test: /\.js|jsx$/,
+      //   exclude: /node_modules/,
+      //   use: {
+      //     loader: "babel-loader",
+      //     options: {
+      //       presets: ["@babel/preset-env", "@babel/preset-react"]
+      //     }
+      //   }
+      // },
       {
-        test: /\.js|jsx$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"]
-          }
-        }
-      },
-      {
-        test: /\.ts|tsx$/,
+        test: /\.ts(x)?$/,
         exclude: /node_modules/,
         use: {
           loader: "ts-loader",
