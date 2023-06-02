@@ -9,7 +9,7 @@ export default () => {
         }, 2000);
         return () => { clearTimeout(timer) }
     }, [])
-    return time ? <div>404...</div> :
+    return time ? <div>error...</div> :
         <Navigate to={'/'} />
 
 

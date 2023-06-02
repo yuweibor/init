@@ -19,8 +19,8 @@ export default (props) => {
         key: '/redux',
         icon: <SettingOutlined />
     }, {
-        label: 'react-redux',
-        key: '/react-redux',
+        label: 'reactredux',
+        key: '/reactredux',
         icon: <SettingOutlined />
     },
     ]

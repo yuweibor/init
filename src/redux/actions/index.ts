@@ -2,6 +2,7 @@ import { act1 } from './action1';
 import { act2 } from './action2';
 import { act3 } from './action3';
 import { act4 } from './action4';
+import { act5 } from './action5';
 
 export const actionType = {
     'a1': Symbol('a1'),
@@ -11,4 +12,4 @@ export const actionType = {
     'a5': Symbol('a5'),
 }
 
-export default { act1, act2, act3, act4 }
+export default { act1, act2, act3, act4, act5 }

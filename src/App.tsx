@@ -24,7 +24,7 @@ export const router = createHashRouter([
                 lazy: () => import("@/pages/Context") as any
             },
             {
-                path: 'react-redux',
+                path: 'reactredux',
                 lazy: () => import("@/pages/ReactRedux") as any
             }
         ],
