@@ -1,8 +1,7 @@
-import { act1 } from './action1';
-import { act2 } from './action2';
+import { common, act2, act5 } from './action1';
 import { act3 } from './action3';
 import { act4 } from './action4';
-import { act5 } from './action5';
+import combineActions from 'redux-action';
 
 export const actionType = {
     'a1': Symbol('a1'),
@@ -12,4 +11,8 @@ export const actionType = {
     'a5': Symbol('a5'),
 }
 
-export default { act1, act2, act3, act4, act5 }
+export { common, act2, act5 } from './action1';
+export { act3 } from './action3';
+export { act4 } from './action4';
+
+export default { common, act2, act3, act4, act5 }

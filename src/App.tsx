@@ -9,7 +9,7 @@ export const router = createHashRouter([
     {
         path: "/",
         element: <Home />,
-        errorElement: <ErrorPage />,
+        // errorElement: <ErrorPage />,
         children: [
             {
                 index: true,

@@ -11,6 +11,8 @@ export const reducer2 = (state = initState, action) => {
             return { ...state, ...action.payload }
         case actionType.a4:
             return { ...state, ...action.payload }
+        case actionType.a5:
+            return { ...state, ...action.payload }
         default:
             return state
     }

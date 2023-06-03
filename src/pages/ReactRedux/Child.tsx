@@ -7,7 +7,7 @@ const Child = (props) => {
     return (
         <div>
             {props.reducer1.name}
-            <button onClick={props.onA1}>a1</button>
+            <button onClick={() => props.onAct({ name: '1111' })}>a1</button>
         </div>
     )
 }
@@ -16,8 +16,8 @@ const mapStateToProps = state => state;
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onA1() {
-            dispatch(actions.act1({ name: '11111' }))
+        onAct(payload) {
+            dispatch(actions.act5(payload))
         }
     }
 }

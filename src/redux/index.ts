@@ -9,12 +9,12 @@ import actions, { actionType } from './actions';
 import sagaRoot from './saga';
 
 export const sagaMid = createSagaMiddleware();
-sagaMid.run(sagaRoot);
 
 // 用thunk 或者 promise
 // const store = createStore(reducers, applyMiddleware( thunk, promise, logger));
 
 const store = createStore(reducers, applyMiddleware(sagaMid, logger));
+sagaMid.run(sagaRoot);
 
 // 第一种
 // store.dispatch(act1({ name: 'a11' }));

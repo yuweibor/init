@@ -1,8 +1,8 @@
-import { take, all, takeEvery, takeLatest, call, put, delay, apply, select, cps, fork, cancel, cancelled, race } from 'redux-saga/effects';
-import { actionType } from '../actions';
-import { act5 } from '../actions/action5';
-export default function* () {
+import { all } from 'redux-saga/effects';
+import saga1 from './saga1';
 
+export default function* () {
+    yield all([saga1()])
 }
 
 
