@@ -20,7 +20,7 @@ sagaMid.run(sagaRoot);
 // store.dispatch(act1({ name: 'a11' }));
 
 // 第二种 整合action
-export const newActions = bindActionCreators(actions, store.dispatch);
+export const newAct = bindActionCreators(actions, store.dispatch);
 // newAct.act2({ name: 'a22' })
 
 // 第三种 redux-thunk

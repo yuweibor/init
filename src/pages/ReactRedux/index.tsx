@@ -6,7 +6,7 @@ import Child from './Child';
 export function Component() {
     return (
         <Provider store={store}>
-            <Child />
+            <Child test={888} />
         </Provider>
     )
 }

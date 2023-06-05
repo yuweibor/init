@@ -2,12 +2,17 @@ import { take, all, takeEvery, takeLatest, call, put, delay, apply, select, cps,
 
 
 import { actionType } from '../actions';
-import { common } from '../actions';
+import { save } from '../actions';
+
+function* defaultTask(payload) {
+    yield put(save({ name: 'tong bu1' }));
+}
+
 function* task({ type, payload }) {
-    yield delay(2000);
-    yield put(common({ name: payload.name + 'finish' }));
+    yield put(save({ name: payload.name + 'finish' }));
 }
 export default function* () {
     yield takeLatest(actionType.a5, task);
+    yield takeLatest(actionType.a2, defaultTask);
 }
 

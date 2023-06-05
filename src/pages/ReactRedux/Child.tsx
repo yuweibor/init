@@ -14,10 +14,10 @@ const Child = (props) => {
 
 const mapStateToProps = state => state;
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, p) => {
     return {
         onAct(payload) {
-            dispatch(actions.act5(payload))
+            dispatch(actions.act5(payload), ...p)
         }
     }
 }
