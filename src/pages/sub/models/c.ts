@@ -6,7 +6,6 @@ export default {
         *asyncAdd(action, { call, put }) {
             console.log(898, action);
             yield call(delay(1000));
-
             yield put({ type: 'a/save', payload: { age: Math.random() } })
 
         }

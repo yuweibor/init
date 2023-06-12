@@ -4,6 +4,7 @@ export default {
     },
     reducers: {
         save: (state, { payload }) => {
+            // state.age++
             return { ...state, ...payload }
         }
     }
