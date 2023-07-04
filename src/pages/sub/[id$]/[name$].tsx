@@ -1,6 +1,7 @@
 import React from 'react'
 import Test from '@/components/Test';
 import { connect } from 'dva';
+
 function NameParam(props) {
     console.log('param', props);
     return (
@@ -9,7 +10,7 @@ function NameParam(props) {
             <button onClick={() => {
                 props.onClickName();
             }}>click nameID</button>
-            <div>Param id{props.match.params?.id}</div>
+            <div className="id">Param id{props.match.params?.id}</div>
             <div>Param name{props.match.params?.name}</div>
             <div>age{props.a.age}</div>
             <div>age{props.c.age}</div>

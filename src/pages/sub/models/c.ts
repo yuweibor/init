@@ -6,6 +6,9 @@ export default {
         *asyncAdd(action, { call, put }) {
             console.log(898, action);
             yield call(delay(1000));
+            const res = yield call(() => fetch('/api/users', { method: 'post' }));
+            console.log(res, 'resss');
+
             yield put({ type: 'a/save', payload: { age: Math.random() } })
 
         }
